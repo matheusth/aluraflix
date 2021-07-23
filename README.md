@@ -1,8 +1,8 @@
-## Sobre
+## 1 - Sobre
 
 Projeto criado em django com rest framework, para o backend-challenge da alura
 
-## Instalação do projeto
+## 2 - Instalação do projeto
 
 1 - Clone o repositório
 
@@ -32,4 +32,44 @@ configurações.
 
 ```bash
 $ python manage.py runserver
+```
+
+## 3 - Rotas
+
+### 3.1 Videos
+
+#### GET /videos/
+
+**Retorna um json com as informações de todos os videos:**
+
+```json
+[
+  {
+    "id": 1,
+    "titulo": "teste3",
+    "descricao": "lorem ipsum dolor sit ammet",
+    "url": "http://testesimples.com"
+  },
+  {
+    "id": 2,
+    "titulo": "teste4",
+    "descricao": "lorem ipsum dolor sit ammet",
+    "url": "http://testesimples.com"
+  }
+]
+```
+
+### GET /videos/<int: pk>
+
+**Exemplo de url:** `/videos/2`
+
+**Resposta:**
+
+```json
+{
+  "id": 2,
+  "titulo": "teste4",
+  "descricao": "lorem ipsum dolor sit ammet",
+  "url": "http://testesimples.com"
+}
 ```
