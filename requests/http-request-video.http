@@ -1,0 +1,33 @@
+GET {{base_url}}/videos/
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 200,"Status code is not 200" )
+});
+%}
+
+###
+GET {{base_url}}/videos/2
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 200,"Status code is not 200" )
+});
+%}
+
+###
+POST {{ base_url }}/videos/
+Content-Type: application/json
+
+{
+  "titulo": "Hello World!",
+  "descricao": "lorem ipsum dolor sit ammet",
+  "url": "http://localhost.com"
+}
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 201,"Status code is not 201" )
+});
+%}
