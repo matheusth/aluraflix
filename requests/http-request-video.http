@@ -8,7 +8,7 @@ client.test("Request executed successfully", function (){
 %}
 
 ###
-GET {{base_url}}/videos/2
+GET {{base_url}}/videos/3
 
 > {%
 client.test("Request executed successfully", function (){
@@ -29,5 +29,44 @@ Content-Type: application/json
 > {%
 client.test("Request executed successfully", function (){
     client.assert(response.status === 201,"Status code is not 201" )
+});
+client.global.set("video_id", response.body.id)
+%}
+###
+
+PUT {{ base_url }}/videos/{{ video_id }}/
+Content-Type: application/json
+
+{
+  "titulo": "Hello World 2!",
+  "descricao": "nova descrição",
+  "url": "http://localhost.com"
+}
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 200,"Status code is not 200" )
+});
+%}
+###
+PATCH {{ base_url }}/videos/{{video_id}}/
+Content-Type: application/json
+
+{
+  "titulo": "Novo Titulo"
+}
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 200,"Status code is not 200" )
+});
+%}
+###
+DELETE {{ base_url }}/videos/{{video_id}}/
+
+
+> {%
+client.test("Request executed successfully", function (){
+    client.assert(response.status === 204,"Status code is not 204" )
 });
 %}
