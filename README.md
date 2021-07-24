@@ -73,3 +73,28 @@ $ python manage.py runserver
   "url": "http://testesimples.com"
 }
 ```
+
+### POST /videos/
+
+O codigo de uma requisão bem sucessedida deve ser `201`.
+
+**Corpo da requisição:**
+
+```json
+{
+  "titulo": "Hello World!",
+  "descricao": "lorem ipsum dolor sit ammet",
+  "url": "http://localhost.com"
+}
+```
+
+**Corpo da resposta:**
+
+```json
+{
+  "id": 19,
+  "titulo": "Hello World!",
+  "descricao": "lorem ipsum dolor sit ammet",
+  "url": "http://localhost.com"
+}
+```
