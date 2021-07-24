@@ -98,3 +98,67 @@ O codigo de uma requisão bem sucessedida deve ser `201`.
   "url": "http://localhost.com"
 }
 ```
+
+### PUT /videos/<int: pk>
+
+Atualiza todas as informações do video especificado.
+
+URL de exemplo: `/videos/19`.
+
+O codigo de uma requisão bem sucessedida deve ser `200`.
+
+**Corpo da requisição:**
+
+```json
+{
+  "titulo": "Hello World!",
+  "descricao": "Nova descrição",
+  "url": "http://localhost.com"
+}
+```
+
+**Corpo da resposta:**
+
+```json
+{
+  "id": 19,
+  "titulo": "Hello World!",
+  "descricao": "nova descrição",
+  "url": "http://localhost.com"
+}
+```
+
+### PATCH /videos/<int: pk>
+
+Atualiza as informações do video com os campos passados, os campos omitidos não são mudados.
+
+URL de exemplo: `/videos/19`.
+
+O codigo de uma requisão bem sucessedida deve ser `200`.
+
+**Corpo da requisição:**
+
+```json
+{
+  "titulo": "Novo titulo"
+}
+```
+
+**Corpo da resposta:**
+
+```json
+{
+  "id": 19,
+  "titulo": "Hello World 2!",
+  "descricao": "nova descrição",
+  "url": "http://localhost.com"
+}
+```
+
+### DELETE /videos/<int: pk>
+
+Deleta as informações do video com `id` fornecido no parametro `pk`.
+
+URL de exemplo: `/videos/19` (deleta o video de `id` 19).
+
+O codigo de uma requisão bem sucessedida deve ser `204`.
