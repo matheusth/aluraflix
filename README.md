@@ -39,8 +39,11 @@ $ python manage.py runserver
 ### 3.1 Videos
 
 #### GET /videos/
+Retorna um arquivo json com todos os videos.
 
-**Retorna um json com as informações de todos os videos:**
+A requisição bem sucessedida retorna o _status code_ `200`.
+
+**Corpo da resposta:**
 
 ```json
 [
@@ -60,10 +63,13 @@ $ python manage.py runserver
 ```
 
 ### GET /videos/<int: pk>
+Retorna as informações sobre um video especifico.
 
 **Exemplo de url:** `/videos/2`
 
-**Resposta:**
+Uma conexão bem sucessedida retorna o _status code_ `200`.
+
+**Corpo da resposta:**
 
 ```json
 {
@@ -76,7 +82,7 @@ $ python manage.py runserver
 
 ### POST /videos/
 
-O codigo de uma requisão bem sucessedida deve ser `201`.
+A requisição bem sucessedida retorna o _status code_ `201`.
 
 **Corpo da requisição:**
 
@@ -105,7 +111,7 @@ Atualiza todas as informações do video especificado.
 
 URL de exemplo: `/videos/19`.
 
-O codigo de uma requisão bem sucessedida deve ser `200`.
+A requisição bem sucessedida retorna o _status code_ `200`.
 
 **Corpo da requisição:**
 
@@ -134,7 +140,7 @@ Atualiza as informações do video com os campos passados, os campos omitidos n�
 
 URL de exemplo: `/videos/19`.
 
-O codigo de uma requisão bem sucessedida deve ser `200`.
+A requisição bem sucessedida retorna o _status code_ `200`.
 
 **Corpo da requisição:**
 
@@ -161,4 +167,4 @@ Deleta as informações do video com `id` fornecido no parametro `pk`.
 
 URL de exemplo: `/videos/19` (deleta o video de `id` 19).
 
-O codigo de uma requisão bem sucessedida deve ser `204`.
+A requisição bem sucessedida retorna o _status code_ `204`.
