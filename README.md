@@ -1,6 +1,6 @@
 ## 1 - Sobre
 
-Projeto criado em django com rest framework, para o backend-challenge da alura
+Projeto criado com **django rest framework**, utilizando o banco de dados **PostgreSQL**, para o backend-challenge da alura.
 
 ## 2 - Instalação do projeto
 
@@ -39,6 +39,7 @@ $ python manage.py runserver
 ### 3.1 Videos
 
 #### GET /videos/
+
 Retorna um arquivo json com todos os videos.
 
 A requisição bem sucessedida retorna o _status code_ `200`.
@@ -63,6 +64,7 @@ A requisição bem sucessedida retorna o _status code_ `200`.
 ```
 
 ### GET /videos/<int: pk>
+
 Retorna as informações sobre um video especifico.
 
 **Exemplo de url:** `/videos/2`
