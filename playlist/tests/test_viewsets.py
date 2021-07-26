@@ -1,6 +1,6 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
-from playlist.models import Video
+from playlist.models import Video, Categoria
 
 
 class VideoTests(APITestCase):
@@ -54,3 +54,25 @@ class VideoTests(APITestCase):
         self.assertEqual(response.data['titulo'][0].code, 'blank')
         self.assertEqual(response.data['descricao'][0].code, 'blank')
         self.assertEqual(response.data['url'][0].code, 'blank')
+
+
+class CategoriasViewsetTest(APITestCase):
+    def setUp(self) -> None:
+        super()
+
+    def __send_post(self, data):
+        return self.client.post('/categorias/', data)
+
+    def test_should_create_categoria_if_request_is_valid(self):
+        """
+        Tests if a valid POST request to the /categoria/ endpoint creates a 'categoria'
+        """
+        data = {
+            "titulo": "Backend",
+            "cor": "teal"
+        }
+        response = self.__send_post(data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertIn('id', response.data)
+        self.assertEqual(Categoria.objects.last().titulo, data['titulo'])
+        self.assertEqual(Categoria.objects.last().cor, data['cor'])
