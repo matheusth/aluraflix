@@ -1,6 +1,5 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
-from django.urls import reverse
 from playlist.models import Video
 
 
@@ -41,6 +40,9 @@ class VideoTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_should_return_bad_request_if_any_field_is_blank(self):
+        """
+        Test if blank fields return a error message, with code == 'blank'.
+        """
         blank_data = {
             "titulo": "",
             "descricao": "",
