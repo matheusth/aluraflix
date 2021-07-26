@@ -5,3 +5,4 @@ htmlcov
 *.pyc
 media
 .env
+/playlist/migrations/0*.py
