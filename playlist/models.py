@@ -12,3 +12,12 @@ class Video(models.Model):
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
+
+
+class Categoria(models.Model):
+    titulo = models.CharField(max_length=80, blank=False, null=False)
+    cor = models.CharField(max_length=30, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
