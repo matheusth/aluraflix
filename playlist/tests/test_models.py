@@ -19,3 +19,4 @@ class CategoriaModelTestCase(testcases.TestCase):
             Categoria.objects.create(titulo=self.titulo, cor=None)
             with self.assertRaises(IntegrityError):
                 Categoria.objects.create(titulo=None, cor=self.cor)
+
