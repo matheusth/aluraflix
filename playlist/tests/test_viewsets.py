@@ -7,6 +7,10 @@ class VideoTests(APITestCase):
     def setUp(self) -> None:
         super()
         self.url = '/videos/'
+        self.categoria = Categoria.objects.create(
+            titulo='Categoria 1',
+            cor='blue'
+        )
 
     def __send_post(self, data):
         return self.client.post(self.url, data)
@@ -19,6 +23,7 @@ class VideoTests(APITestCase):
             "titulo": "Teste 1",
             "descricao": "Lorem ipsum dolor sit ammet.",
             "url": "http://localhost",
+            "categoria_id": self.categoria.id
         }
         response = self.__send_post(data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -26,6 +31,7 @@ class VideoTests(APITestCase):
         self.assertEqual(Video.objects.get().titulo, data['titulo'])
         self.assertEqual(Video.objects.get().descricao, data['descricao'])
         self.assertEqual(Video.objects.get().url, data['url'])
+        self.assertEqual(self.categoria.id, data['categoria_id'])
 
     def test_should_return_bad_request_if_url_is_invalid(self):
         """
@@ -76,3 +82,23 @@ class CategoriasViewsetTest(APITestCase):
         self.assertIn('id', response.data)
         self.assertEqual(Categoria.objects.last().titulo, data['titulo'])
         self.assertEqual(Categoria.objects.last().cor, data['cor'])
+
+    def test_should_list_videos_of_categoria(self):
+        """
+        Test if is possible to list the videos by a category.
+        """
+        categoria = Categoria.objects.create(
+            titulo='test_hi',
+            cor='black'
+        )
+        Video.objects.create(
+            titulo='test_video',
+            descricao='lorem ipsum hello world.!',
+            url='http://localhost.com',
+            categoria=categoria
+        )
+        response = self.client.get(f'/categorias/{categoria.id}/videos')
+        self.assertEqual(len(response.data), 1)
+        self.assertIn('titulo', response.data[0])
+        self.assertIn('descricao', response.data[0])
+        self.assertIn('url', response.data[0])
