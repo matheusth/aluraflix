@@ -6,3 +6,4 @@ htmlcov
 media
 .env
 /playlist/migrations/0*.py
+.coverage

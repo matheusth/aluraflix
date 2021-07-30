@@ -1,0 +1,8 @@
+[run]
+omit=
+    */.venv/*
+    */tests/*
+    manage.py
+
+[report]
+exclude_lines = def __str__
