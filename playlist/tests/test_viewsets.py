@@ -61,6 +61,27 @@ class VideoTests(APITestCase):
         self.assertEqual(response.data['descricao'][0].code, 'blank')
         self.assertEqual(response.data['url'][0].code, 'blank')
 
+    def test_should_list_all_videos(self):
+        """
+        Tests if the route GET /videos/ if working
+        """
+        Video.objects.create(titulo="teste", descricao="teste", url="https://test.com")
+        Video.objects.create(titulo="teste 2", descricao="teste 2", url="https://teste.com", categoria=self.categoria)
+        response = self.client.get(self.url)
+        response_data = response.data
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for video in response_data:
+            self.assertIn('id', video)
+            self.assertIn('titulo', video)
+            self.assertIn('descricao', video)
+            self.assertIn('categoria', video)
+            self.assertIsNotNone(video['titulo'])
+            self.assertIsNotNone(video['descricao'])
+            self.assertIsNotNone(video['url'])
+        self.assertIsNone(response_data[0]['categoria'])
+        self.assertIsNotNone(response_data[1]['categoria'])
+
 
 class CategoriasViewsetTest(APITestCase):
     def setUp(self) -> None:
