@@ -32,6 +32,7 @@ client.test("Request executed successfully", function (){
 });
 client.global.set("video_id", response.body.id)
 %}
+
 ###
 
 PUT {{ base_url }}/videos/{{ video_id }}/
@@ -48,19 +49,21 @@ client.test("Request executed successfully", function (){
     client.assert(response.status === 200,"Status code is not 200" )
 });
 %}
+
 ###
 PATCH {{ base_url }}/videos/{{video_id}}/
 Content-Type: application/json
 
 {
-  "titulo": "Novo Titulo"
+  "titulo": "Video 1"
 }
 
 > {%
 client.test("Request executed successfully", function (){
-    client.assert(response.status === 200,"Status code is not 200" )
+client.assert(response.status === 200, "Status code is not 200" )
 });
 %}
+
 ###
 DELETE {{ base_url }}/videos/{{video_id}}/
 

@@ -1,1 +1,12 @@
 GET {{base_url}}/categorias/
+
+###
+
+GET {{base_url}}/categorias/1
+
+###
+
+GET {{base_url}}/categorias/1/videos
+
+###
+

@@ -119,7 +119,22 @@ class CategoriasViewsetTest(APITestCase):
             categoria=categoria
         )
         response = self.client.get(f'/categorias/{categoria.id}/videos')
+        videos = response.data
+        self.assertEqual(len(videos), 1)
+        self.assertEqual(type(videos[0]['titulo']), str)
+        self.assertEqual(type(videos[0]['id']), int)
+        print(videos[0][categoria])
+        self.assertEqual(type(videos[0]['descricao']), str)
+        self.assertEqual(type(videos[0]['url']), str)
+
+    def test_should_list_categories(self):
+        Categoria.objects.create(
+            titulo="Categoria 1",
+            cor="#CCCCDD"
+        )
+
+        response = self.client.get('/categorias/')
         self.assertEqual(len(response.data), 1)
-        self.assertIn('titulo', response.data[0])
-        self.assertIn('descricao', response.data[0])
-        self.assertIn('url', response.data[0])
+        self.assertEqual(type(response.data[0]['titulo']), str)
+        self.assertEqual(type(response.data[0]['id']), int)
+        self.assertEqual(type(response.data[0]['cor']), str)
