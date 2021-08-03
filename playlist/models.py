@@ -9,6 +9,9 @@ class Categoria(models.Model):
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
 
+    def __str__(self):
+        return self.titulo
+
 
 class Video(models.Model):
     titulo = models.CharField(max_length=200, blank=False, null=False)

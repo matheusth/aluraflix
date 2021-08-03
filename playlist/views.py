@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics
 from playlist.models import Video, Categoria
-from playlist.serializers import VideosSerializer, CategoriasSerializer
+from playlist.serializers import VideosSerializer, CategoriasSerializer, VideosByCategoria
 
 
 class VideosViewSet(viewsets.ModelViewSet):
@@ -8,7 +8,7 @@ class VideosViewSet(viewsets.ModelViewSet):
     serializer_class = VideosSerializer
 
 
-class CategoriasViewSet(viewsets.ModelViewSet):
+class  CategoriasViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriasSerializer
 
@@ -18,4 +18,4 @@ class VideosCategoriaViewSet(generics.ListAPIView):
         videos = Video.objects.filter(categoria_id=self.kwargs['pk'])
         return videos
 
-    serializer_class = VideosSerializer
+    serializer_class = VideosByCategoria
