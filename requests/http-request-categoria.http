@@ -1,12 +1,81 @@
+POST {{base_url}}/categorias/
+Content-Type: application/json
+
+{
+  "titulo": "teste",
+  "cor": "#cccccc"
+}
+
+> {%
+client.test("Request was successfull", function (){
+    client.assert(response.status === 201, "Status code different form 201 - Created")
+})
+client.global.set('categoria_id', response.body.id)
+ %}
+
+###
+
 GET {{base_url}}/categorias/
 
-###
-
-GET {{base_url}}/categorias/1
-
-###
-
-GET {{base_url}}/categorias/1/videos
+> {%
+client.test("Request was successfull", function() {
+    client.assert(response.status===200, "Status code different from 200 - OK")
+})
+%}
 
 ###
+
+GET {{base_url}}/categorias/{{categoria_id}}/
+
+>{%
+ client.test("Request was successfull", function (){
+    client.assert(response.status === 201, "Status code different form 201 - Created")
+})
+ %}
+
+###
+PATCH {{base_url}}/categorias/{{categoria_id}}/
+Content-Type: application/json
+
+{
+  "titulo": "Olá mundo!"
+}
+
+> {%
+client.test("Request was successfull", function (){
+client.assert(response.status === 200, "Failed on PATCH")
+})
+%}
+###
+
+PUT {{base_url}}/categorias/{{categoria_id}}/
+Content-Type: application/json
+
+{
+  "titulo": "Olá mundo!",
+  "cor": "red"
+}
+
+> {%
+client.test("Request was successfull", function (){
+client.assert(response.status === 200, "Status code different form 201 - Created")
+})
+%}
+
+###
+GET {{base_url}}/categorias/{{categoria_id}}/videos
+
+> {%
+client.test("Request was successfull", function (){
+client.assert(response.status === 200, "Status code different form 201 - Created")
+})
+%}
+###
+DELETE {{base_url}}/categorias/{{categoria_id}}/
+
+> {%
+client.test("Request was successfull", function (){
+client.assert(response.status === 204, "Status code different form 204 - No Content")
+})
+%}
 
