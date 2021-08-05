@@ -8,7 +8,7 @@ class VideosViewSet(viewsets.ModelViewSet):
     serializer_class = VideosSerializer
 
 
-class  CategoriasViewSet(viewsets.ModelViewSet):
+class CategoriasViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriasSerializer
 

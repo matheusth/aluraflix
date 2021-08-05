@@ -123,7 +123,6 @@ class CategoriasViewsetTest(APITestCase):
         self.assertEqual(len(videos), 1)
         self.assertEqual(type(videos[0]['titulo']), str)
         self.assertEqual(type(videos[0]['id']), int)
-        print(videos[0][categoria])
         self.assertEqual(type(videos[0]['descricao']), str)
         self.assertEqual(type(videos[0]['url']), str)
 
