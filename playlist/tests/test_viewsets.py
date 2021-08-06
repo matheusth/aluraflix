@@ -82,6 +82,25 @@ class VideoTests(APITestCase):
         self.assertIsNone(response_data[0]['categoria'])
         self.assertIsNotNone(response_data[1]['categoria'])
 
+    def test_should_return_404_if_video_does_not_exists(self):
+        """
+        Tests if try to get a video that does not exists reutrns a 404 error
+        """
+        response = self.client.get(f'{self.url}{20}/')
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_should_return_the_video_if_video_does_exists(self):
+        """
+        Tests if you can retrieve a video that does exists in the database
+        """
+        video = Video.objects.create(titulo="teste_by_pk", descricao="lorem ipsum dolor sit ammet.", url="teste.com")
+        response = self.client.get(f'{self.url}{video.id}/')
+
+        self.assertEqual(response.data['titulo'], video.titulo)
+        self.assertEqual(response.data['descricao'], video.descricao)
+        self.assertEqual(response.data['url'], video.url)
+
 
 class CategoriasViewsetTest(APITestCase):
     def setUp(self) -> None:
@@ -137,3 +156,11 @@ class CategoriasViewsetTest(APITestCase):
         self.assertEqual(type(response.data[0]['titulo']), str)
         self.assertEqual(type(response.data[0]['id']), int)
         self.assertEqual(type(response.data[0]['cor']), str)
+
+    def test_should_get_a_categoria_by_id_if_the_video_does_exists(self):
+        cateogria = Categoria.objects.create(titulo='jogos', cor='blue')
+
+        response = self.client.get(f'/categorias/{cateogria.id}/')
+
+        self.assertEqual(response.data['titulo'], cateogria.titulo)
+        self.assertEqual(response.data['cor'], cateogria.cor)
