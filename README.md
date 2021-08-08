@@ -42,7 +42,7 @@ $ python manage.py runserver
 
 Retorna um arquivo json com todos os videos.
 
-A requisição bem sucessedida retorna o _status code_ `200`.
+A requisição bem sucedida retorna o _status code_ `200`.
 
 **Corpo da resposta:**
 
@@ -69,7 +69,7 @@ Retorna as informações sobre um video especifico.
 
 **Exemplo de url:** `/videos/2`
 
-Uma conexão bem sucessedida retorna o _status code_ `200`.
+Uma conexão bem sucedida retorna o _status code_ `200`.
 
 **Corpo da resposta:**
 
@@ -84,7 +84,7 @@ Uma conexão bem sucessedida retorna o _status code_ `200`.
 
 ### POST /videos/
 
-A requisição bem sucessedida retorna o _status code_ `201`.
+A requisição bem sucedida retorna o _status code_ `201`.
 
 **Corpo da requisição:**
 
@@ -113,7 +113,7 @@ Atualiza todas as informações do video especificado.
 
 URL de exemplo: `/videos/19`.
 
-A requisição bem sucessedida retorna o _status code_ `200`.
+A requisição bem sucedida retorna o _status code_ `200`.
 
 **Corpo da requisição:**
 
@@ -142,7 +142,7 @@ Atualiza as informações do video com os campos passados, os campos omitidos n�
 
 URL de exemplo: `/videos/19`.
 
-A requisição bem sucessedida retorna o _status code_ `200`.
+A requisição bem sucedida retorna o _status code_ `200`.
 
 **Corpo da requisição:**
 
@@ -169,4 +169,4 @@ Deleta as informações do video com `id` fornecido no parametro `pk`.
 
 URL de exemplo: `/videos/19` (deleta o video de `id` 19).
 
-A requisição bem sucessedida retorna o _status code_ `204`.
+A requisição bem sucedida retorna o _status code_ `204`.
